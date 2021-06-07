@@ -11150,3 +11150,8 @@ legend {
   margin-right: 400px;
   margin-left: 400px;
 }
+
+.filesize {
+  height: 100%;
+  width: 800px;
+}

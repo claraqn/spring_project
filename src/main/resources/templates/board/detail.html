@@ -58,7 +58,7 @@
             <div th:if="${boardDto.fileId != null}" class="form-group">
                 <label class="form-label mt-4">이미지</label><br>
                 <a th:href="@{'/download/' + ${boardDto.fileId}}"></a>
-                <img th:src="@{/img/}+${fileDto.origFilename}">
+                <img th:src="@{/img/}+${fileDto.origFilename}" class="filesize">
                 <!--    <img th:src="@{/img/unnamed.jpg}"/>-->
             </div>
         </fieldset>
