@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div th:insert="common/header.html" id="header"></div>
+    <br>
+<!--    <div id="table-d">-->
+<!--    <table class="table table-hover">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th scope="col">번호</th>-->
+<!--            <th scope="col">글제목</th>-->
+<!--            <th scope="col">작성자</th>-->
+<!--            <th scope="col">작성일</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+
+<!--        <tbody>-->
+<!--        &lt;!&ndash; CONTENTS !&ndash;&gt;-->
+<!--        <tr th:each="board : ${boardList}">-->
+<!--            <td>-->
+<!--                <span th:text="${board.id}"></span>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <a th:href="@{'/post/' + ${board.id}}">-->
+<!--                    <span class="text-danger" th:text="${board.title}"></span>-->
+<!--                </a>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <span th:text="${board.writer}"></span>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>-->
+
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+
+<!--    <div>-->
+<!--        <span th:each="pageNum : ${pageList}" th:inline="text">-->
+<!--            <a th:href="@{'/?page=' + ${pageNum}}">[[${pageNum}]]</a>-->
+<!--        </span>-->
+<!--    </div>-->
+<!--    <span></span>-->
+
+<!--    <button class="btn btn-warning btn-lg" type="button" th:onclick="'location.href=\'' + @{/post} + '\';'">글쓰기</button>-->
+
+
+<!--    </div>-->
+
+    <div class="text-center">
+        <h3 class="text-warning"><strong>제주대학생</strong>을 위한 온라인 거래 사이트</h3>
+    </div>
+    <div class="toast show list-plus-center" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body">
+            <div id="table-d">
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">번호</th>
+                        <th scope="col">글제목</th>
+                        <th scope="col">작성자</th>
+                        <th scope="col">작성일</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <!-- CONTENTS !-->
+                    <tr th:each="board : ${boardList}">
+                        <td>
+                            <span th:text="${board.id}"></span>
+                        </td>
+                        <td>
+                            <a th:href="@{'/post/' + ${board.id}}">
+                                <span class="text-danger" th:text="${board.title}"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <span th:text="${board.writer}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+<!--                <div>-->
+<!--                <span th:each="pageNum : ${pageList}" th:inline="text">-->
+<!--                <a th:href="@{'/?page=' + ${pageNum}}">[[${pageNum}]]</a>-->
+<!--                </span>-->
+<!--                </div>-->
+
+
+
+                <div>
+                    <ul class="pagination pagination-sm number-plus-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">&laquo;</a>
+                        </li>
+                        <span th:each="pageNum : ${pageList}" th:inline="text">
+                            <li class="page-item">
+                                <a th:href="@{'/?page=' + ${pageNum}}" class="page-link">[[${pageNum}]]</a>
+                            </li>
+                        </span>
+                        <li class="page-item">
+                            <a class="page-link" href="#">&raquo;</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <br>
+                <button class="btn btn-warning btn-lg" type="button" th:onclick="'location.href=\'' + @{/post} + '\';'">글쓰기</button>
+                <br>
+
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <!-- FOOTER -->
+<!--    <div th:insert="common/footer.html" id="footer"></div>-->
+</body>
+</html>

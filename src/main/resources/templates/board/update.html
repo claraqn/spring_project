@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+
+</head>
+<body>
+<!--<form th:action="@{'/post/edit/' + ${boardDto.id}}" method="post">-->
+<!--    <input type="hidden" name="_method" value="put"/>-->
+<!--    <input type="hidden" name="id" th:value="${boardDto.id}"/>-->
+
+<!--    제목 : <input type="text" name="title" th:value="${boardDto.title}"> <br>-->
+<!--    작성자 : <input type="text" name="writer" th:value="${boardDto.writer}"> <br>-->
+<!--    <textarea name="content" th:text="${boardDto.content}"></textarea><br>-->
+
+<!--    <input type="submit" value="수정">-->
+<!--</form>-->
+
+
+<div class="toast show write-plus-center" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-body">
+        <form th:action="@{'/post/edit/' + ${boardDto.id}}" method="post"enctype="multipart/form-data">
+            <input type="hidden" name="_method" value="put"/>
+            <input type="hidden" name="id" th:value="${boardDto.id}"/>
+
+            <fieldset>
+                <legend class="text-center">글 수정</legend>
+                <div class="form-group">
+                    <label class="form-label mt-4">제목</label>
+                    <input type="text" class="form-control" name="title" th:value="${boardDto.title}">
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">작성자</label>
+                    <br>
+                    <input type="text" class="form-control" name="writer" th:value="${boardDto.writer}">
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">내용</label>
+                    <textarea class="form-control" name="content" rows="10" th:text="${boardDto.content}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">사진 첨부</label>
+                    <input class="form-control" name="file" type="file" id="customFile">
+                    <small>*이미지 파일 첨부는 필수입니다*</small>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-warning">수정하기</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+<script th:inline="javascript">
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+</body>
+</html>

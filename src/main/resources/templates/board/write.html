@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+<!--    <form action="/post" method="post" enctype="multipart/form-data">-->
+<!--        제목 : <input type="text" name="title"> <br>-->
+<!--        작성자 : <input type="text" name="writer"> <br>-->
+<!--        <textarea name="content"></textarea><br>-->
+<!--        <label for="inputFile"><strong>첨부 파일</strong></label>-->
+<!--        <div>-->
+<!--            <div class="custom-file" id="inputFile">-->
+<!--                <input name="file" type="file" class="custom-file-input" id="customFile">-->
+<!--                <label class="custom-file-label" for="customFile">파일을 선택해 주세요.</label>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <input type="submit" value="등록">-->
+<!--&lt;!&ndash;        <button type="button" value="제출"></button>&ndash;&gt;-->
+<!--    </form>-->
+
+
+<!--------------------------------------------->
+
+    <div class="toast show write-plus-center" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body">
+            <form action="/post" method="post" enctype="multipart/form-data">
+                <fieldset>
+                    <legend class="text-center">글쓰기</legend>
+                    <div class="form-group">
+                        <label class="form-label mt-4">제목</label>
+                        <input type="text" class="form-control" name="title" placeholder="제목을 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label mt-4">작성자</label>
+                        <br>
+                        아이디 : <span sec:authentication="name"></span>
+<!--                        <br>-->
+<!--                        <input type="hidden" sec:authentication="name" name="writer" value="name"/>-->
+
+                        <!--                            <select class="form-select" id="exampleSelect1">-->
+<!--                                <option>1</option>-->
+<!--                            </select>-->
+                        <input type="text" class="form-control" name="writer" placeholder="작성자를 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label mt-4">내용</label>
+                        <textarea class="form-control" name="content" rows="10"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label mt-4">사진 첨부</label>
+                        <input class="form-control" name="file" type="file" id="customFile">
+                        <small>*이미지 파일 첨부는 필수입니다*</small>
+                        <small>*이미지 파일은 수정이 되지 않으니 신중히 생각하고 첨부바랍니다*</small>
+
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-warning">등록하기</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+<!--    ------------------->
+
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script th:inline="javascript">
+            $(".custom-file-input").on("change", function() {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+    </script>
+
+</body>
+</html>
